@@ -1,0 +1,305 @@
+####JQUERY EVENT HANDLING#####
+
+ 
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title></title>
+<style>
+        #box {
+            margin-right: 1500px;
+            padding: 20px;
+            border: 1px solid #000;
+            position: relative;
+            background-color: lightgreen;
+            width: 10%;
+        }
+</style>
+</head>
+<body>
+
+ 
+
+    <div id="box">
+<h1>test box</h1>
+<p>how is jquery going</p>
+<p>hope its going well</p>
+<br />
+<br />
+
+ 
+
+        <button>TestButton</button>
+</div>
+<br />
+
+ 
+
+    <div id="box">
+<a href="https://jquery.com/" id="result">google.com  (PreventDefault)</a>
+<br /><br />
+<a href="https://jquery.com/">google.com</a>
+
+ 
+
+    </div>
+
+ 
+
+    <br />
+
+ 
+
+    <h2></h2>
+
+ 
+
+    <br />
+<br />
+<br />
+
+ 
+
+
+<input type="text" value="Hello World"><br><br>
+
+ 
+
+    <button>Trigger the select event for the input field</button>
+
+ 
+
+ 
+
+    <br />
+<br />
+<p>This is a paragraph.</p>
+<p>This is another paragraph.</p>
+<p>Click any p element to make it disappear.</p>
+
+ 
+
+    <button>Remove all event handlers for all p elements</button>
+
+ 
+
+
+<br />
+<br />
+<br />
+<br />
+<button>Remove event handlers, added with the delegate() method, from all elements</button>
+
+ 
+
+ 
+
+
+<script src="jquery-3.6.4.min.js"></script>
+
+ 
+
+
+<!--//###EVENT TARGET####-->
+<!--<script>
+        $(document).ready(function () {
+            $('#box').on("click", function () {
+                /*$('h3').html("target element:" + event.target);*/
+
+ 
+
+                //it display different messages when we click on button, paragraph and heading
+                //that what we have used
+
+ 
+
+
+                /*$('h3').html("target element:" + event.target.nodeName);*/
+                //it display the tag when we click on button, paragraph, heading
+
+ 
+
+
+                $('h3').html("target element:" + event.target.innerHTML);
+                //it display the tag  text when we click on button, paragraph, heading
+            });
+
+ 
+
+
+        });
+
+ 
+
+    </script>-->
+
+
+
+<!--//###EVENT PREVENT DEFAULT PROPERTY####-->
+<!--<script>
+        $(document).ready(function () {
+            $('#result').click(function () {
+                event.preventDefault();
+                //event.preventdefault restrict to not open the link which will run automatically on a click
+            });
+        });
+
+ 
+
+
+        $(document).ready(function () {
+            $('#result').click(function (event) {
+                event.preventDefault();
+
+ 
+
+                var a = event.isDefaultPrevented();
+
+ 
+
+                $('h2').html(a);
+                //give the status of preventDefault method that it is used or not if
+                //used then show true
+            });
+        });
+</script>-->
+<!--//###STOP PROPAGATION####-->
+<!--<script>
+        $(document).ready(function () {
+            $('#box').click(function () {
+                alert("the div element was clicked");
+            });
+
+ 
+
+            $('h1').click(function (event) {
+                event.stopPropagation();
+                //when click on heading then no other click event fire.
+                alert("the h2 element was clicked" + event.isPropagationStopped());
+                //it will show the status that event is propagation is workin or not show true false
+
+ 
+
+            });
+
+ 
+
+            $('p').click(function () {
+                alert("the p element was clicked");
+
+ 
+
+            });
+
+ 
+
+            $('p').click(function () {
+                alert("the button element was clicked");
+            });
+
+ 
+
+        });
+</script>-->
+
+
+
+<!--//###DELEGATION####-->
+<!--<script>
+
+ 
+
+        $(document).ready(function () {
+            $("div").delegate("p", "click", function () {
+                $(this).slideToggle();
+            });
+            //It hide the the paragraph when click on pragraph
+
+ 
+
+            $("button").click(function () {
+                $("<p>This is a new paragraph.</p>").insertAfter("button");
+            });
+
+ 
+
+            //it add the tag text when click on button
+        });
+</script>-->
+<!--//###LIVE METHOD####-->
+<!--<script>
+        $(document).ready(function () {
+            $("p").live("click", function () {
+                $(this).slideToggle();
+            });
+            //It hide the text when click on paragraph
+            $("button").click(function () {
+                $("<p>This is a new paragraph.</p>").insertAfter("button");
+
+ 
+
+                //insert the paragraph when click on button
+            });
+        });
+</script>-->
+<!--//### TRIGGER EVENTS ####-->
+<!--<script>
+        $(document).ready(function () {
+            $("input").select(function () {
+                $("input").after(" Text marked!");
+            });
+            $("button").click(function () {
+                $("input").trigger("select");
+            });
+            //triggers the specified event and the default behavior of an event
+            //(like form submission) for the selected elements.
+        });
+</script>-->
+
+
+
+
+<!--### UNBIND METHOD ####-->
+<script>
+        $(document).ready(function () {
+            $("p").click(function () {
+                $(this).slideToggle();
+            });
+            $("button").click(function () {
+                $("p").unbind();
+            });
+        });
+        //Remove all event handlers for all p elements
+
+ 
+
+    </script>
+
+ 
+
+
+<!--### UNDELEGATE METHOD ####-->
+<script>
+        $(document).ready(function () {
+            $("p").click(function () {
+                $(this).slideToggle();
+            });
+            $("button").click(function () {
+                $("p").unbind();
+            });
+        });
+        //Remove event handlers, added with the delegate() method, from all element
+
+ 
+
+    </script>
+
+ 
+
+</body>
+</html>
+
+has context menu
+Compose
